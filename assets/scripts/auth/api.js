@@ -8,8 +8,9 @@ const store = require('../store')
 
 const signUp = function (data) {
   console.log(data)
+  debugger
   return $.ajax({
-    url: config.apiOrigin + '/sign-up/',
+    url: config.apiUrl + '/sign-up/',
     method: 'POST',
     data
   })
@@ -18,7 +19,7 @@ const signUp = function (data) {
 const signIn = function (data) {
   console.log(data)
   return $.ajax({
-    url: config.apiOrigin + '/sign-in/',
+    url: config.apiUrl + '/sign-in/',
     method: 'POST',
     data
   })
@@ -27,7 +28,7 @@ const signIn = function (data) {
 const signOut = function () {
   return $.ajax({
     method: 'DELETE',
-    url: config.apiOrigin + '/sign-out/' + store.user.id,
+    url: config.apiUrl + '/sign-out/',
     headers: {
       Authorization: 'Token token=' + store.user.token
     }
@@ -37,18 +38,22 @@ const signOut = function () {
 const changePassword = function (data) {
   return $.ajax({
     method: 'PATCH',
-    url: config.apiOrigin + '/change-password/' + store.user.id,
+    url: config.apiUrl + '/change-password/',
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
     data: data
   })
 }
+
 const CreateItemsUsers = function (data) {
   return $.ajax({
     method: 'POST',
-    url: config.apiOrigin + '/ItemsUsers',
-    data
+    url: config.apiUrl + '/ItemsUsers' ,
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: data
   })
 }
 
