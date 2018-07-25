@@ -18,6 +18,10 @@ const changePasswordSuccess = () => {
   console.log('Password Successfully Changed.')
 }
 
+const createItemUsersSuccess = () => {
+  console.log('ItemsUsers successfully created!')
+}
+
 const success = (data) => {
   console.log(data)
 }

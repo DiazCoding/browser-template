@@ -40,11 +40,20 @@ const onChangePassword = function (event) {
   console.log('change password ran!')
 }
 
+const onCreateItemsUsers = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  api.createList(data)
+  
+  console.log('Create items users ran!')
+}
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#sign-out').on('submit', onSignOut)
   $('#change-password').on('submit', onChangePassword)
+  $('#create-itemsusers').on('submit', onCreateItemsUsers)
 }
 
 module.exports = {

@@ -44,16 +44,18 @@ const changePassword = function (data) {
     data: data
   })
 }
-
-// const CreateList = function (data) {
-//   return $.ajax({
-
-//   })
-// }
+const CreateItemsUsers = function (data) {
+  return $.ajax({
+    method: 'POST',
+    url: config.apiOrigin + '/ItemsUsers',
+    data
+  })
+}
 
 module.exports = {
   signUp,
   signIn,
   signOut,
-  changePassword
+  changePassword,
+  CreateItemsUsers
 }
