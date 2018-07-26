@@ -40,12 +40,21 @@ const onChangePassword = function (event) {
   console.log('change password ran!')
 }
 
-const onCreateItemsUsers = function (event) {
+const onGetItemsUsers = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  api.createList(data)
-  
-  console.log('Create items users ran!')
+  api.getItemsUsers(data)
+  .then(ui.getItemsUsersSuccess)
+  .catch(ui.fail)
+  console.log('this works')
+}
+
+const onDeleteItemsUsers = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  api.destroyItemsUsers(data)
+    .then(booksUi.onDestroySuccess)
+    .catch(booksUi.onError)
 }
 
 const addHandlers = () => {
@@ -53,7 +62,8 @@ const addHandlers = () => {
   $('#sign-in').on('submit', onSignIn)
   $('#sign-out').on('submit', onSignOut)
   $('#change-password').on('submit', onChangePassword)
-  $('#create-itemsusers').on('submit', onCreateItemsUsers)
+  $('#get-itemsusers').on('click', onGetItemsUsers)
+  $('#delete-itemsusers').on('click', onDeleteItemsUsers)
 }
 
 module.exports = {

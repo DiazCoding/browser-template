@@ -1,0 +1,18 @@
+{{#each ItemsUsers as |ItemsUsers|}}
+  {{log ItemsUsers}}
+  <!-- {{> partial}}
+  Don't uncomment yet -->
+
+ <!-- Developers, why are we using data-id and not just id? -->
+  <h1 data-id="{{ItemsUsers.id}}"> <small>Part: {{ItemsUsers.part}}</small>
+  <small>Price: {{ItemsUsers.price}}</small>
+  </h1>
+  <div>
+    {{#if ItemsUsers.name}}
+      {{ItemsUsers.name}}
+    {{else}}
+      No part provided
+    {{/if}}
+  </div>
+
+{{/each}}

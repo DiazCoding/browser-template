@@ -18,9 +18,6 @@ const changePasswordSuccess = () => {
   console.log('Password Successfully Changed.')
 }
 
-const createItemUsersSuccess = () => {
-  console.log('ItemsUsers successfully created!')
-}
 
 const success = (data) => {
   console.log(data)
@@ -28,6 +25,22 @@ const success = (data) => {
 
 const failure = (error) => {
   console.error(error)
+}
+
+const getItemsUsersSuccess = function (data) {
+  console.table(data.ItemsUsers)
+  // clear content div, in case something was already there
+  $('#content').html('')
+
+  data.books.forEach(book => {
+    const bookHTML = (`
+      <h4>Name: ${ItemsUsers.Item.name}</h4>
+      <p>Part: ${ItemsUsers.Item.part}</p>
+      <p>Price: ${ItemsUsers.Item.price}</p>
+      <br>
+    `)
+    $('#content').append(bookHTML)
+  })
 }
 
 module.exports = {

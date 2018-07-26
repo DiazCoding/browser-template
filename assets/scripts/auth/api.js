@@ -5,10 +5,21 @@ const store = require('../store')
 // const getFormFields = require('../../../lib/get-form-fields.js');
 
 // authApi.signUp(authUi.success, authUi.failure, data);
-
+const getItemsUsers = function (){
+  console.log('thisworks2')
+  return $.ajax({
+    url: config.apiUrl + '/items_users',
+    method: 'GET'
+  })
+}
+const destroyItemsUsers = function (data) {
+  return $.ajax({
+    url: config.apiUrl + '/items_users/' + data.book.id,
+    method: 'DELETE'
+  })
+}
 const signUp = function (data) {
   console.log(data)
-  debugger
   return $.ajax({
     url: config.apiUrl + '/sign-up/',
     method: 'POST',
@@ -58,6 +69,7 @@ const CreateItemsUsers = function (data) {
 }
 
 module.exports = {
+  getItemsUsers,
   signUp,
   signIn,
   signOut,
