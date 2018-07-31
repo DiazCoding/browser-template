@@ -12,12 +12,22 @@ const getItemsUsers = function (){
     method: 'GET'
   })
 }
-const destroyItemsUsers = function (data) {
+
+const addNewItemsUsers = function (){
   return $.ajax({
-    url: config.apiUrl + '/items_users/' + data.book.id,
+    url: config.apiUrl + '/items_users',
+    methond: 'POST'
+  })
+}
+
+const destroyItemsUsers = function (data) {
+  console.log(data)
+  return $.ajax({
+    url: config.apiUrl + '/items_users/' + data,
     method: 'DELETE'
   })
 }
+
 const signUp = function (data) {
   console.log(data)
   return $.ajax({
@@ -74,5 +84,7 @@ module.exports = {
   signIn,
   signOut,
   changePassword,
-  CreateItemsUsers
+  CreateItemsUsers,
+  addNewItemsUsers,
+  destroyItemsUsers
 }

@@ -10,7 +10,6 @@ const onSignUp = function (event) {
   api.signUp(data)
   .done(ui.success)
   .fail(ui.fail)
-  console.log('sign up ran!')
 }
 
 const onSignIn = function (event) {
@@ -19,7 +18,6 @@ const onSignIn = function (event) {
   api.signIn(data)
   .done(ui.signInSuccess)
   .fail(ui.fail)
-  console.log('sign in ran!')
 }
 
 const onSignOut = function (event) {
@@ -28,7 +26,6 @@ const onSignOut = function (event) {
   api.signOut(data)
   .done(ui.signOutSuccess)
   .fail(ui.fail)
-  console.log('sign out ran!')
 }
 
 const onChangePassword = function (event) {
@@ -37,24 +34,36 @@ const onChangePassword = function (event) {
   api.changePassword(data)
   .done(ui.changePasswordSuccess)
   .fail(ui.fail)
-  console.log('change password ran!')
+}
+
+const onAddItemsUsers = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  api.addNewItemsUsers(data)
+  .done(ui.success)
+  .fail(ui.fail)
 }
 
 const onGetItemsUsers = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
   api.getItemsUsers(data)
-  .then(ui.getItemsUsersSuccess)
-  .catch(ui.fail)
-  console.log('this works')
+  .done((data) => {
+    $.each(data.items_users, (index, element) => {
+console.log(data.items_users[index])
+      $('#table-projects > tbody').append('<tr><td>' + element.id + '</td><td>' + element.item.name + '</td><td>' + element.item.part + '</td><td>' + element.item.price + '</td></tr>') ;
+     });
+  })
+  .fail(ui.fail)
 }
 
 const onDeleteItemsUsers = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  api.destroyItemsUsers(data)
-    .then(booksUi.onDestroySuccess)
-    .catch(booksUi.onError)
+  debugger
+  api.destroyItemsUsers(data.items_users.id)
+    .then(ui.success)
+    .catch(ui.failure)
 }
 
 const addHandlers = () => {
@@ -63,7 +72,7 @@ const addHandlers = () => {
   $('#sign-out').on('submit', onSignOut)
   $('#change-password').on('submit', onChangePassword)
   $('#get-itemsusers').on('click', onGetItemsUsers)
-  $('#delete-itemsusers').on('click', onDeleteItemsUsers)
+  $('#delete-item').on('submit', onDeleteItemsUsers)
 }
 
 module.exports = {

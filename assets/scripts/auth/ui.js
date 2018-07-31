@@ -28,18 +28,19 @@ const failure = (error) => {
 }
 
 const getItemsUsersSuccess = function (data) {
-  console.table(data.ItemsUsers)
+  console.log('this is reaching')
+  console.table(data.ItemsUsers.items)
   // clear content div, in case something was already there
   $('#content').html('')
 
-  data.books.forEach(book => {
-    const bookHTML = (`
-      <h4>Name: ${ItemsUsers.Item.name}</h4>
-      <p>Part: ${ItemsUsers.Item.part}</p>
-      <p>Price: ${ItemsUsers.Item.price}</p>
+  data.ItemsUsers.forEach(items => {
+    const ItemsUsersHTML = (`
+      <h4>Name: ${ItemsUsers.name}</h4>
+      <p>Part: ${ItemsUsers.part}</p>
+      <p>Price: ${ItemsUsers.price}</p>
       <br>
     `)
-    $('#content').append(bookHTML)
+    $('#content').append(ItemsUsersHTML)
   })
 }
 
@@ -48,5 +49,6 @@ module.exports = {
   success,
   signInSuccess,
   signOutSuccess,
-  changePasswordSuccess
+  changePasswordSuccess,
+  getItemsUsersSuccess
 }
