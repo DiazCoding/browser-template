@@ -6,17 +6,18 @@ const store = require('../store')
 
 // authApi.signUp(authUi.success, authUi.failure, data);
 const getItemsUsers = function (){
-  console.log('thisworks2')
   return $.ajax({
     url: config.apiUrl + '/items_users',
     method: 'GET'
   })
 }
 
-const addNewItemsUsers = function (){
+const addNewItemsUsers = function (data){
+  console.log(data)
   return $.ajax({
-    url: config.apiUrl + '/items_users',
-    methond: 'POST'
+    url: config.apiUrl + '/items/' ,
+    methond: 'POST',
+    data: data
   })
 }
 
@@ -67,16 +68,6 @@ const changePassword = function (data) {
   })
 }
 
-const CreateItemsUsers = function (data) {
-  return $.ajax({
-    method: 'POST',
-    url: config.apiUrl + '/ItemsUsers' ,
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    },
-    data: data
-  })
-}
 
 module.exports = {
   getItemsUsers,
@@ -84,7 +75,6 @@ module.exports = {
   signIn,
   signOut,
   changePassword,
-  CreateItemsUsers,
   addNewItemsUsers,
   destroyItemsUsers
 }

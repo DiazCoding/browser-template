@@ -66,6 +66,23 @@ const onDeleteItemsUsers = function (event) {
     .catch(ui.failure)
 }
 
+const onCreateItemsUsers = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  api.addNewItemsUsers(data)
+    .then(ui.success)
+    .catch(ui.failure)
+  if (data === '') {
+    $('#content').html('<p>Name is requiered</p>')
+    $('#content').css('background-color', 'red')
+    return false
+  } else if (data === '') {
+    $('#content').html('<p>Type is required</p>')
+    $('#content').css('background-color', 'red')
+    return false
+  }
+}
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
@@ -73,6 +90,7 @@ const addHandlers = () => {
   $('#change-password').on('submit', onChangePassword)
   $('#get-itemsusers').on('click', onGetItemsUsers)
   $('#delete-item').on('submit', onDeleteItemsUsers)
+  $('#create-item').on('submit', onCreateItemsUsers)
 }
 
 module.exports = {
